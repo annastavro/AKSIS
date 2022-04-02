@@ -1,0 +1,271 @@
+autostart = False
+version = 0.8.6
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10001
+    [[1751]]
+        image = C:\Users\Evgeny\GNS3\Images\c1700-sy-mz.122-15.t17.image
+        idlepc = 0x801fe270
+        ghostios = True
+        chassis = 1751
+    [[ROUTER R4]]
+        model = 1751
+        console = 2104
+        aux = 2504
+        cnfg = configs\R4.cfg
+        wic0/0 = WIC-1ENET
+        wic0/1 = WIC-1ENET
+        e0/0 = R6 e0/1
+        e0/1 = R5 e0/0
+        f0/0 = R2 e0/0
+        x = -308.0
+        y = -203.0
+        z = 1.0
+    [[ROUTER R5]]
+        model = 1751
+        console = 2105
+        aux = 2505
+        cnfg = configs\R5.cfg
+        wic0/0 = WIC-1ENET
+        wic0/1 = WIC-1ENET
+        e0/0 = R4 e0/1
+        e0/1 = R3 e0/1
+        f0/0 = R8 e0/1
+        x = 35.0
+        y = -52.0
+        z = 1.0
+    [[ROUTER R6]]
+        model = 1751
+        console = 2106
+        aux = 2506
+        cnfg = configs\R6.cfg
+        wic0/0 = WIC-1ENET
+        wic0/1 = WIC-1ENET
+        e0/0 = R1 e0/0
+        e0/1 = R4 e0/0
+        f0/0 = R2 f0/0
+        x = -324.0
+        y = 72.0
+        z = 1.0
+        hx = 2.5
+        hy = -20.0
+    [[ROUTER R7]]
+        model = 1751
+        console = 2107
+        aux = 2507
+        cnfg = configs\R7.cfg
+        f0/0 = R1 f0/0
+        x = -155.0
+        y = 233.0
+        z = 1.0
+    [[ROUTER R1]]
+        model = 1751
+        console = 2101
+        aux = 2501
+        cnfg = configs\R1.cfg
+        wic0/0 = WIC-1ENET
+        wic0/1 = WIC-1ENET
+        e0/0 = R6 e0/0
+        e0/1 = R8 f0/0
+        f0/0 = R7 f0/0
+        x = -11.0
+        y = 57.0
+        z = 1.0
+    [[ROUTER R2]]
+        model = 1751
+        console = 2102
+        aux = 2502
+        cnfg = configs\R2.cfg
+        wic0/0 = WIC-1ENET
+        wic0/1 = WIC-1ENET
+        e0/0 = R4 f0/0
+        e0/1 = R3 e0/0
+        f0/0 = R6 f0/0
+        x = -37.0
+        y = -208.0
+        z = 1.0
+    [[ROUTER R3]]
+        model = 1751
+        console = 2103
+        aux = 2503
+        cnfg = configs\R3.cfg
+        wic0/0 = WIC-1ENET
+        wic0/1 = WIC-1ENET
+        e0/0 = R2 e0/1
+        e0/1 = R5 e0/1
+        f0/0 = R8 e0/0
+        x = 237.0
+        y = -201.0
+        z = 1.0
+    [[ROUTER R8]]
+        model = 1751
+        console = 2108
+        aux = 2508
+        cnfg = configs\R8.cfg
+        wic0/0 = WIC-1ENET
+        wic0/1 = WIC-1ENET
+        e0/0 = R3 f0/0
+        e0/1 = R5 f0/0
+        f0/0 = R1 e0/1
+        x = 264.0
+        y = 141.0
+        z = 1.0
+        hx = 34.5
+        hy = -21.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[NOTE 1]]
+        text = "fd00:1111:2222:0007::/64"
+        x = 67.0
+        y = -112.0
+    [[NOTE 2]]
+        text = "6to4\n2002:B211:2C00/16\n178.17.44.0/22"
+        x = -89.0
+        y = -113.0
+    [[NOTE 3]]
+        text = "fd00:1111:2222:0008::/64"
+        x = 79.0
+        y = 37.0
+    [[NOTE 4]]
+        text = "IPv6-over-IPv4 manual\n135.94.156.0/23\nfd00:1111:2222:0010::/64"
+        x = 206.0
+        y = -66.0
+    [[NOTE 5]]
+        text = "fd00:1111:2222:0004::/64"
+        x = 55.0
+        y = 123.0
+    [[NOTE 6]]
+        text = "fd00:1111:2222:0002::/64"
+        x = -257.0
+        y = -28.0
+    [[NOTE 7]]
+        text = "fd00:1111:2222:0009::/64\n2a03:c740:1111:2222::/64"
+        x = -133.0
+        y = 157.0
+    [[NOTE 8]]
+        text = "fd00:1111:2222:0006::/64"
+        x = 49.0
+        y = -217.0
+    [[NOTE 9]]
+        text = "fd00:1111:2222:0001::/64"
+        x = -323.0
+        y = -90.0
+    [[NOTE 10]]
+        text = "fd00:1111:2222:0003::/64"
+        x = -220.0
+        y = 68.0
+    [[NOTE 11]]
+        text = "fd00:1111:2222:0005::/64"
+        x = -230.0
+        y = -213.0
+    [[NOTE 12]]
+        text = "e0/0"
+        x = 29.8519005832
+        y = -17.8759259461
+        interface = R8 e0/0
+    [[NOTE 13]]
+        text = "f0/0"
+        x = -5.25514256991
+        y = 10.314792815
+        interface = R8 f0/0
+    [[NOTE 14]]
+        text = "e0/1"
+        x = 2.41394524532
+        y = -3.77776667098
+        interface = R8 e0/1
+    [[NOTE 15]]
+        text = "f0/0"
+        x = 36.1480994168
+        y = 61.8759259461
+        interface = R3 f0/0
+    [[NOTE 16]]
+        text = "e0/0"
+        x = -6.98695294706
+        y = 20.9784355087
+        interface = R3 e0/0
+    [[NOTE 17]]
+        text = "e0/1"
+        x = 0.809786819328
+        y = 45.744266158
+        interface = R3 e0/1
+    [[NOTE 18]]
+        text = "e0/1"
+        x = 72.9869529471
+        y = 23.0215644913
+        interface = R2 e0/1
+    [[NOTE 19]]
+        text = "f0/0"
+        x = 4.36872206491
+        y = 49.932954083
+        interface = R2 f0/0
+    [[NOTE 20]]
+        text = "e0/0"
+        x = -6.99319355152
+        y = 22.7378817998
+        interface = R2 e0/0
+    [[NOTE 21]]
+        text = "e0/1"
+        x = 71.2551425699
+        y = 33.685207185
+        interface = R1 e0/1
+    [[NOTE 22]]
+        text = "f0/0"
+        x = 7.67048838971
+        y = 52.9582919681
+        interface = R1 f0/0
+    [[NOTE 23]]
+        text = "e0/0"
+        x = -6.9541460704
+        y = 23.9147354347
+        interface = R1 e0/0
+    [[NOTE 24]]
+        text = "f0/0"
+        x = 58.3295116103
+        y = -8.95829196813
+        interface = R7 f0/0
+    [[NOTE 25]]
+        text = "f0/0"
+        x = 61.6312779351
+        y = -5.93295408301
+        interface = R6 f0/0
+    [[NOTE 26]]
+        text = "e0/0"
+        x = 72.9541460704
+        y = 20.0852645653
+        interface = R6 e0/0
+    [[NOTE 27]]
+        text = "e0/1"
+        x = 35.3233436464
+        y = -17.9324689232
+        interface = R6 e0/1
+    [[NOTE 28]]
+        text = "f0/0"
+        x = 63.5860547547
+        y = 47.777766671
+        interface = R5 f0/0
+    [[NOTE 29]]
+        text = "e0/1"
+        x = 65.1902131807
+        y = -1.74426615802
+        interface = R5 e0/1
+    [[NOTE 30]]
+        text = "e0/0"
+        x = -3.60945297313
+        y = 5.8833020439
+        interface = R5 e0/0
+    [[NOTE 31]]
+        text = "f0/0"
+        x = 72.9931935515
+        y = 21.2621182002
+        interface = R4 f0/0
+    [[NOTE 32]]
+        text = "e0/1"
+        x = 69.6094529731
+        y = 38.1166979561
+        interface = R4 e0/1
+    [[NOTE 33]]
+        text = "e0/0"
+        x = 30.6766563536
+        y = 61.9324689232
+        interface = R4 e0/0

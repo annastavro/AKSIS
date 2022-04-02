@@ -1,0 +1,95 @@
+НаGuest_Linux_1 зарегистрировать нового пользователя и включить его  в  одну  из  соответствующих дистрибутиву  стандартных  групп. Разобраться с хранением паролей и обеспечить временность пароля нового пользователя.
+
+sudo adduser <username>
+
+(Права на каталог: 	sudo chown username /home/username
+			sudo chgrp username /home/username)
+
+Вывести список пользователей:
+cat /etc/passwd | awk '/bash/{print}'
+
+Добавить в группу
+sudo adduser <username> <группа> (например, sudo adduser username sudo)
+
+Вывести список групп
+cat /etc/group
+
+Удалить пользователя:
+sudo userdel <username> -r
+
+Пароль
+sudo passwd <username> [args]
+-e -  сделать пароль устаревшим немедленно
+-x <days> - через сколько дней поменять пароль 
+
+-------------------------------------------------------------------------------------
+
+
+Квотирование
+
+sudo apt-get install quota
+
+sudo nano /etc/fstab (usrquota)
+sudo touch /home/aquota.user
+sudo chmod 0600 /home/aquota.user
+
+sudo edquota -u <username>
+sudo edquota -t
+sudo repquota /
+------------------------------------------------------------------------------------
+
+
+Аудит
+sudo apt-get install inotify-tools
+inotifywait
+inotifywatch
+sudo sh watch.sh test_folder
+
+--------------------------------------
+NAT на шлюзе
+
+sudo sysctl net.ipv4.ip_forward=1 # Разрешаем шлюзу передавать транзитный трафик
+sudo iptables -F FORWARD # На всякий случай очистим цепочку FORWARD
+# Разрешаем проходить пакетам по уже установленным соединениям
+sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+# Разрешаем исходящие соединения из локальной сети к интернет-хостам
+sudo iptables -A FORWARD -m conntrack --ctstate NEW -i eth3 -s 10.0.4.0/24 -j ACCEPT
+sudo iptables -P FORWARD DROP # Весь остальной транзитный трафик — запрещаем.
+sudo iptables -t nat -F POSTROUTING # На всякий случай очистим цепочку POSTROUTING таблицы nat
+# Маскарадим весь трафик, идущий через eth2
+sudo iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
+--------------------------------------------------------------------
+
+squid
+
+sudo apt-get install squid
+sudo cp /etc/squid3/squid.conf /etc/squid3/squid.conf.original
+sudo chmod a-w /etc/squid3/squid.conf.original
+sudo kate /etc/squid3/squid.conf
+
+port 3128
+
+    acl my_network src 10.0.4.0/24
+    acl all src 0.0.0.0/24
+    http_access allow my_network
+    http_access deny all
+
+sudo /etc/init.d/squid3 restart
+
+
+
+---------------
+apache
+/etc/apache2/conf.d
+
+sudo apt-get install apache2
+sudo apt-get install php5
+sudo apt-get install libapache2-mod-php5
+sudo /etc/init.d/apache2 restart
+
+/var/www/
+
+
+///-------------------
+Очистить arp-кэш
+arp -d -a

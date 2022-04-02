@@ -1,0 +1,11 @@
+Global Unicast ipv6 Belarus
+
+ripencc|BY|ipv6|2a03:c740::|32|20130111|allocated
+
+
+
+link-local вручную - R2 и R3
+
+R6 e1/0: ipv6 nd ra-interval 50 (default 200)
+	 reachable-time 10000 ms (default 30000)
+

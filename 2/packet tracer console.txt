@@ -1,0 +1,37 @@
+enable
+
+configur terminal
+
+
+interface fastEthernet 0/0
+
+----------------
+
+
+ip route 0.0.0.0 255.255.255.0 fastEthernet 0/0
+ip route 0.0.0.0 255.255.255.0 10.1.1.2
+
+--------------
+ip dhcp excluded
+ip dhcp excluded-address 10.1.1.1 10.1.1.15
+ip dhcp pool sss
+network 10.1.1.0 255.255.255.0
+default-router 10.1.1.1
+
+--------------------------------
+
+ip nat ?
+
+
+--------------------------------
+
+
+route <название протокола>
+
+
+
+
+
+----------
+
+run-config startup-config

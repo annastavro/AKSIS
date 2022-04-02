@@ -1,0 +1,9 @@
+Дисковые квоты в Linux
+http://linux-ru.blogspot.com/2007/03/linux.html
+
+Установка ограничений на размер домашнего каталога в Ubuntu
+http://asan74.ru/archives/276
+
+
+Аудит
+http://www.denry.ru/linux-soft/524-prostojj-fajjlovyjj-audit-v-linux-na-osnove-inotify-tools/

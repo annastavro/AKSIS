@@ -1,0 +1,56 @@
+router> - самый начальный режим(не помню как называется)
+router# - privelleged exec mode
+router(conf)# - configure terminal
+router(config-if)# - режим конфиг-ния интерфейса
+
+ну, поехали!
+
+router>enable 
+router#configure terminal
+router(conf)# interface fa0/0(e0/0,e1/0)
+router(config-if)#ipv6 address 2a02:2208:1111:1000::1/52
+router(config-if)#no shutdown
+router(config-if)#exit
+router(conf)#ipv6 unicast-routing
+router(conf)#ipv6 route сеть(например 2a02:2208:1111:1000::/52, ::/0 - для маршрута по умолчанию ) next-hop adress(напрмиер,2a02:2208:1111:2000::1/) - это прописывание статического маршрута (::/0 - v)
+
+
+
+6to4
+настроить айпив4 адрес на интерфейсах внутри туннеля (например e0/0) командой ip address 161.39.192.1 255.255.240.0 (это для примера)
+router(conf)#interface tunnel 0
+router(config-if)#tunnel mode ipv6ip 6to4
+router(config-if)#ipv6 address 2002:a127:c001:1::1/64 (где a1 - 161; 27 - 39; c0 - 192; 01 - 1)
+router(config-if)#tunnel source e0/0(имя исходящегоинтерфейса)
+router(config-if)#exit
+router(conf)#ipv6 route 2002::/16 tunnel 0
+
+
+manual tunnel
+настроить айпив4 адрес на интерфейсах (например e0/0) командой ip address 161.39.192.1 255.255.240.0 (это для примера)
+router(conf)#interface tunnel 0
+router(config-if)#tunnel mode ipv6ip
+router(config-if)#ipv6 address 2001:1:1:1::1/64 (по ходу любой айпив6 адрес)
+router(config-if)#tunnel source e0/0(имя исходящегоинтерфейса)
+router(config-if)#tunnel destination 161.39.192.2 (айпив4 противоположного интерфейса)
+router(config-if)#exit
+
+
+router#copy running-config sturtup-config   - сохранение конфигурации в стартап
+router#ping 2a02:2208:1111:1000::1
+
+--------------------------------------------------------------------
+
+Смотреть туннели
+show interfaces tunnel 0
+
+
+OSPFv3
+
+Futura(config)#ipv6 router ospf 1
+Futura(config-rtr)#router-id 1.1.1.1
+Futura(config-rtr)#exit
+Futura(config)#interface fastEthernet 0/0
+Futura(config-if)#ipv6 ospf 1 area 0
+Futura(config-if)#exit
+
